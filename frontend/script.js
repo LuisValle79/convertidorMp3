@@ -12,7 +12,7 @@ btn.addEventListener("click", () => {
   status.innerText = "⏳ Convirtiendo...";
 
   // Conexión con el backend
-  fetch('http://localhost:3000/convert', {
+  fetch('https://convertidormp3-luka.onrender.com/convert', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
