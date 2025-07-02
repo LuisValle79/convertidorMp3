@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #1a1f3a, #2a2f5a);
+  color: #ecf0f1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle at 25% 25%, rgba(222, 170, 55, 0.2) 0%, transparent 70%);
+  z-index: 0;
+  top: -30%;
+  left: -30%;
+  animation: glow 6s infinite alternate;
+}
+
+@keyframes glow {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(1.3); opacity: 0.1; }
+}
+
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 0 15px rgba(222, 170, 55, 0.6));
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.card:hover .logo {
+  transform: rotate(15deg) scale(1.15);
+  filter: drop-shadow(0 0 20px rgba(222, 170, 55, 0.8));
+}
+
+h1 {
+  font-size: 2.6rem;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #d4af37, #f1c40f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  text-shadow: 0 3px 15px rgba(244, 208, 63, 0.4);
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+p {
+  font-size: 1.15rem;
+  color: #ecf0f1;
+  margin-bottom: 30px;
+  font-weight: 400;
+  opacity: 0.85;
+  animation: slideUp 1s ease-out 0.2s backwards;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 0.85; transform: translateY(0); }
+}
+
+.input {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: none;
+  background: #2e2e5e;
+  color: #ecf0f1;
+  font-size: 1.15rem;
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+  outline: none;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.3);
+  animation: bounceIn 1s ease-out 0.4s backwards;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.input::placeholder {
+  color: #d1d5db;
+  opacity: 0.7;
+}
+
+.input:focus {
+  background: #3a3a6e;
+  box-shadow: 0 0 20px rgba(142, 68, 173, 0.3), inset 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #8e44ad, #3498db);
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  box-shadow: 0 8px 30px rgba(52, 152, 219, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  animation: slideInRight 1s ease-out 0.6s backwards;
+}
+
+@keyframes slideInRight {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #9b59b6, #45a1ff);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(52, 152, 219, 0.7);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.status {
+  margin-top: 25px;
+  font-size: 1.15rem;
+  color: #a3bffa;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(163, 191, 250, 0.4);
+  animation: fadeIn 1s ease-in 0.8s backwards;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 30px 20px;
+    margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .input, .button {
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+
+  .logo {
+    width: 60px;
+  }
+}
