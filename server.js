@@ -38,9 +38,8 @@ app.post('/convert', async (req, res) => {
         const audioStream = ytdl(url, { quality: 'highestaudio' });
 
         audioStream.on('error', (err) => {
-            console.error('Error en el stream de ytdl-core:', err.message);
-            // It's important to handle this error and potentially stop the ffmpeg process
-            // or inform the client about the failure.
+            console.error('Error en el stream de ytdl-core:', err.message, err.stack);
+            res.status(500).json({ error: 'Error en el stream de ytdl-core: ' + err.message });
         });
 
         audioStream.on('end', () => {
@@ -58,13 +57,13 @@ app.post('/convert', async (req, res) => {
                 res.json({ message: 'Conversión completada.', title: videoTitle, downloadLink: `/download/${encodeURIComponent(videoTitle)}.mp3` });
             })
             .on('error', (err) => {
-                console.error(`Error durante la conversión de ${videoTitle}:`, err.message);
-                res.status(500).json({ error: 'Error durante la conversión del video.' });
+                console.error(`Error durante la conversión de ${videoTitle}:`, err.message, err.stack);
+                res.status(500).json({ error: 'Error durante la conversión del video: ' + err.message });
             });
 
     } catch (error) {
-        console.error('Error al procesar la URL:', error.message);
-        res.status(500).json({ error: 'Error al procesar la URL del video.' });
+        console.error('Error al procesar la URL:', error.message, error.stack);
+        res.status(500).json({ error: 'Error al procesar la URL del video: ' + error.message });
     }
 });
 
